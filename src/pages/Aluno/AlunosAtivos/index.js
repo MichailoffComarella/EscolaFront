@@ -2,8 +2,7 @@ import { Button } from '@material-ui/core';
 import {React, Component} from 'react';
 import httpService from '../../../service/httpService';
 
-class Alunos extends Component {
-
+class AlunosAtivos extends Component {
     constructor() {
         super()
 
@@ -13,7 +12,7 @@ class Alunos extends Component {
     }
 
     componentDidMount() {
-        httpService.get('/aluno')
+        httpService.get('/aluno?active=ativos')
             .then(({ data }) => {
                 this.setState({ alunos: data })
                 console.log(data)
@@ -42,7 +41,7 @@ class Alunos extends Component {
         return (
             
                 <div>
-                    <h2> Alunos! </h2>
+                    <h2> Alunos Ativos </h2>
 
                     <ul>
                         {
@@ -50,7 +49,7 @@ class Alunos extends Component {
                                 <li key={aluno.id}>
                                     {aluno.nome}
                                     <Button onClick={() => this._handleDeleteAluno(aluno.id)}> 
-                                    Delete
+                                    Desativar
                                     </Button>
                                 </li>
                             )
@@ -61,5 +60,5 @@ class Alunos extends Component {
         );
     }
 }
-
-export default Alunos;
+ 
+export default AlunosAtivos;

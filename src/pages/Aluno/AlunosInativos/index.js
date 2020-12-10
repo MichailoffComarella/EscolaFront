@@ -1,9 +1,7 @@
-import { Button } from '@material-ui/core';
 import {React, Component} from 'react';
 import httpService from '../../../service/httpService';
 
-class Alunos extends Component {
-
+class AlunosInativos extends Component {
     constructor() {
         super()
 
@@ -13,26 +11,12 @@ class Alunos extends Component {
     }
 
     componentDidMount() {
-        httpService.get('/aluno')
+        httpService.get('/aluno?active=inativos')
             .then(({ data }) => {
                 this.setState({ alunos: data })
                 console.log(data)
             })
             
-    }
-
-    _handleDeleteAluno = (id) => {
-        httpService.delete(`/aluno/${id}`)
-        .then(() => {
-            const { alunos } = this.state
-            const updatedAlunos = alunos.filter(
-                alunos => alunos.id !== id
-            )
-
-            this.setState({
-                alunos: updatedAlunos
-            })
-        })
     }
 
     render() {
@@ -42,16 +26,13 @@ class Alunos extends Component {
         return (
             
                 <div>
-                    <h2> Alunos! </h2>
+                    <h2> Alunos Inativos </h2>
 
                     <ul>
                         {
                             alunos.map(aluno =>
                                 <li key={aluno.id}>
                                     {aluno.nome}
-                                    <Button onClick={() => this._handleDeleteAluno(aluno.id)}> 
-                                    Delete
-                                    </Button>
                                 </li>
                             )
                         }
@@ -61,5 +42,5 @@ class Alunos extends Component {
         );
     }
 }
-
-export default Alunos;
+ 
+export default AlunosInativos;

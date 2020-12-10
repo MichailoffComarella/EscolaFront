@@ -3,22 +3,34 @@ import { Router } from "@material-ui/icons";
 import { Link, Route } from "react-router-dom";
 import HomeIcon from '@material-ui/icons/Home';
 import Alunos from "./pages/Aluno/TodosAlunos/index";
+import AlunosAtivos from "./pages/Aluno/AlunosAtivos";
+import AlunosInativos from "./pages/Aluno/AlunosInativos"
 
 
 function App() {
   return (
     <div>
 
+      <h1> Todos: </h1>
+
       <Alunos />
+
+      <h1> Ativos: </h1>
+
+      <AlunosAtivos />
+
+      <h1> Inativos: </h1>
+
+      <AlunosInativos />
 
 
       {/* <Router>
         <Switch>
           <Route path="/aluno" exact component={Alunos}/>
         </Switch>
-      </Router> 
+      </Router>  */}
       
-      <Router>
+      {/* <Router>
 
         <AppBar position="static">
           <Toolbar>
@@ -38,10 +50,11 @@ function App() {
         </AppBar>
 
         <Switch>
-          <Route path="/aluno" exact component={alunosPage} />
+          <Route path="/aluno" exact component={Alunos} />
         </Switch>
 
       </Router> */}
+
     </div>
   );
 }
